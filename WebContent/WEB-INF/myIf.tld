@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    
+    <!-- 对此文件的描述 -->
+    <description>处理留言处的循环</description>
+    <!-- 版本号 -->
+    <tlib-version>1.0</tlib-version>
+    <!-- 这个就是前面提到的前缀名或者说短名，一定记住这里填写的，JSP页面引用的时候需要用到 -->
+    <short-name>myIfTag</short-name>
+    <!-- 这里填写的URI也是可以随意填写的，JSP页面就是通过这个地址进行查找的标签的 -->
+    <uri>http://lcl/tag</uri>
+    
+    <!-- 从这里到taglib标签开始的位置，此处内容可以直接在tomcat中找到。
+    	 具体位置在:tomcat\webapps\examples\WEB-INF\jsp2
+    	 文件名:jsp2-example-taglib.tld
+    	 直接复制即可 -->
+    
+    <!-- 以下就是标签的注册 -->
+    <tag>
+    	<!-- 这里是标签的描述，而非文件的描述 -->
+        <description>模拟if</description>
+        <!-- 标签的使用名称，在JSP页面使用标签时，就是用的这个名字 -->
+        <name>if</name>
+        <!-- 此标签对应的完整的处理器名称 -->
+        <tag-class>com.lcl.tag.MyIfTag</tag-class>
+        <!-- 此处有四个选择:
+        	1. empty 规定此标签没有实体
+        	2. JSP 已废弃的属性,标签具有标签体，但是不能包含任何java代码，也不会对任何表达式进行计算,原样输出到浏览器
+        	3. scriptless 标签具有标签体，不能包含任何java代码，但是可以对EL表达式进行计算
+        	4. tagdependent  和JSP功能相似，可以替代JSP使用	
+         -->
+        <body-content>scriptless</body-content>
+        <attribute>
+        	<!-- 属性名称，必须和标签属性名保持一致 -->
+        	<name>test</name>
+        	<!-- 强制性要求，false时，标签内的属性可以不填 -->
+        	<required>true</required>
+        	<!-- 此属性是否支持EL表达式或者Java表达式
+ 				   如果不存在则默认值为“false”，即该属性具有静态值，即不支持
+        	 -->
+        	<rtexprvalue>true</rtexprvalue>
+        	<type>boolean</type>
+        </attribute>
+    </tag>
+    
+</taglib>
